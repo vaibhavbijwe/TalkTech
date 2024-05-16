@@ -15,6 +15,9 @@ connectDB();
 //rest object
 const app = express();
 
+//route path
+const authRoutes = require('./routes/authRoutes')
+
 //middlewares
 app.use(cors())
 app.use(express.json())
@@ -22,6 +25,9 @@ app.use(bodyparser.urlencoded({extended:false}))
 app.use(morgan('dev'))
 
 const PORT = process.env.PORT || 8080;
+
+//routes Api
+app.use('./api/v1/auth', authRoutes);
 
 //listen server
 app.listen(PORT, () => {
